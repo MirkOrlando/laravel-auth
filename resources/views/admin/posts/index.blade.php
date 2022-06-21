@@ -13,12 +13,21 @@
                 </tr>
             </thead>
             <tbody>
-
-                <tr>
-                    <td scope="row"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @forelse ($posts as $post)
+                    <tr>
+                        <td scope="row">{{ $post->id }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->created_at }}</td>
+                        <td><img width="100px" src="{{ $post->cover_img }}" alt="cover img {{ $post->title }}"></td>
+                        <td>View - Edit - Delete</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td scope="row">
+                            <p>No posts to show yet. Create your first post!</p>
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
 

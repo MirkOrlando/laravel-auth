@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container">
+        <div class="top mb-2 d-flex justify-content-between align-items-center">
+            <h1>All Posts</h1>
+            <div class="action">
+                <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">New Post</a>
+            </div>
+        </div>
         <table class="table table-striped table-inverse table-responsive">
             <thead class="thead-inverse">
                 <tr>

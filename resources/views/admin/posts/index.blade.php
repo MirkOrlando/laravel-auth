@@ -7,6 +7,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
+                    <th>Slug</th>
                     <th>Crated At</th>
                     <th>Cover Image</th>
                     <th>Actions</th>
@@ -17,7 +18,8 @@
                     <tr>
                         <td scope="row">{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
-                        <td>{{ $post->created_at }}</td>
+                        <td>{{ $post->slug }}</td>
+                        <td>{{ $post->created_at->format('d/m/Y') }}</td>
                         <td><img width="100px" src="{{ $post->cover_img }}" alt="cover img {{ $post->title }}"></td>
                         <td>View - Edit - Delete</td>
                     </tr>

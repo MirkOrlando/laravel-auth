@@ -27,7 +27,9 @@
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->created_at->format('d/m/Y') }}</td>
                         <td><img width="100px" src="{{ $post->cover_img }}" alt="cover img {{ $post->title }}"></td>
-                        <td>View - Edit - Delete</td>
+                        <td>
+                            <a href="{{ route('admin.posts.show', $post->slug) }}" class="btn btn-primary btn-sm">View</a>
+                        </td>
                     </tr>
                 @empty
                     <tr>

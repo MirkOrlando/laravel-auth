@@ -26,7 +26,7 @@
                 <input type="text" class="form-control @error('cover_img') is-invalid @enderror" name="cover_img"
                     id="cover_img" aria-describedby="coverHelper"
                     placeholder="https://gametimers.it/wp-content/uploads/2022/02/naruto-scaled.jpg"
-                    {{ old('cover_img', $post->cover_img) }}>
+                    value="{{ old('cover_img', $post->cover_img) }}">
                 <small id="coverHelper" class="form-text text-muted">Post's cover image urls here</small>
             </div>
             <div class="mb-3">

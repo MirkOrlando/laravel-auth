@@ -43,6 +43,10 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $validated = $request->validated();
+        /* $title = $request->validate([
+            'title' => ['required', 'unique:posts', 'max:150']
+        ]);
+        $validated['title'] = $title; */
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
         //dd($validated);
@@ -80,11 +84,18 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         /* $title = $request->validate([
-            'title' => ['required', Rule::unique('users')->ignore($user->id)]
-        ]);*/
+            'title' => 'required|max:150|unique:posts,title,' . $post->id,
+        ]); */
+        $validated = $request->validated();
+        /* $validated['title'] = $title; */
+        $slug = Str::slug($request->title, '-');
+        $validated['slug'] = $slug;
+        // dd($validated);
+        $post->update($validated);
+        return redirect()->route('admin.posts.index')->with('message', 'Post updated Successfully');
     }
 
     /**

@@ -51,7 +51,7 @@ class PostController extends Controller
         $validated['slug'] = $slug;
         //dd($validated);
         Post::create($validated);
-        return redirect()->route('admin.posts.index')->with('message', 'Post Created Successfully');
+        return redirect()->route('admin.posts.index')->with('message', "Post Created Successfully");
     }
 
     /**
@@ -95,7 +95,7 @@ class PostController extends Controller
         $validated['slug'] = $slug;
         // dd($validated);
         $post->update($validated);
-        return redirect()->route('admin.posts.index')->with('message', 'Post updated Successfully');
+        return redirect()->route('admin.posts.index')->with('message', "$post->title Updated Successfully");
     }
 
     /**
@@ -106,6 +106,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index')->with('message', "$post->title Deleted successfully");
     }
 }

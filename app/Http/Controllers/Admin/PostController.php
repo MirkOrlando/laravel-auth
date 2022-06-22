@@ -42,14 +42,15 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $validated = $request->validated();
-        /* $title = $request->validate([
-            'title' => ['required', 'unique:posts', 'max:150']
+        /*  $validated = $request->validated(); */
+        $validated = $request->validate([
+            'title' => ['required', 'unique:posts', 'max:150'],
+            'cover_img' => '',
+            'content' => ''
         ]);
-        $validated['title'] = $title; */
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
-        //dd($validated);
+        // dd($validated);
         Post::create($validated);
         return redirect()->route('admin.posts.index')->with('message', "Post Created Successfully");
     }
@@ -89,11 +90,16 @@ class PostController extends Controller
         /* $title = $request->validate([
             'title' => 'required|max:150|unique:posts,title,' . $post->id,
         ]); */
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'title' => 'required|max:150|unique:posts,title,' . $post->id,
+            'cover_img' => '',
+            'content' => ''
+        ]);
+        /* $validated = $request->validated(); */
         /* $validated['title'] = $title; */
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
-        // dd($validated);
+        //dd($validated);
         $post->update($validated);
         return redirect()->route('admin.posts.index')->with('message', "$post->title Updated Successfully");
     }

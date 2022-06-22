@@ -4,7 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Post;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -36,9 +40,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $slug = Str::slug($request->title, '-');
+        $validated['slug'] = $slug;
+        //dd($validated);
+        Post::create($validated);
+        return redirect()->route('admin.posts.index')->with('message', 'Post Created Successfully');
     }
 
     /**
@@ -72,7 +81,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        /* $title = $request->validate([
+            'title' => ['required', Rule::unique('users')->ignore($user->id)]
+        ]);*/
     }
 
     /**

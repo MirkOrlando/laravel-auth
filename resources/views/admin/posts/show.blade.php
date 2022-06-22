@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <img src="{{ $post->cover_img }}" alt="">
+        <img class="img-fluid mb-3 shadow-lg" src="{{ $post->cover_img }}" alt="">
         <h2>{{ $post->title }}</h2>
         <div class="content">
             {{ $post->content }}

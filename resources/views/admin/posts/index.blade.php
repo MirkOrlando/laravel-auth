@@ -13,7 +13,7 @@
                 {{ session('message') }}
             </div>
         @endif
-        <table class="table table-striped table-inverse table-responsive">
+        <table class="table table-striped table-inverse">
             <thead class="thead-inverse">
                 <tr>
                     <th>ID</th>
@@ -29,11 +29,11 @@
                         <td scope="row">{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->created_at->format('d/m/Y') }}</td>
-                        <td><img width="100px" src="{{ $post->cover_img }}" alt="cover img {{ $post->title }}"></td>
+                        <td width="100px"><img width="100px" src=" {{ asset('/storage/' . $post->cover_img) }}"
+                                alt="cover img {{ $post->title }}"></td>
                         <td>
                             <a href="{{ route('admin.posts.show', $post->slug) }}" class="btn btn-primary btn-sm">View</a>
-                            <a href="{{ route('admin.posts.edit', $post->slug) }}"
-                                class="btn btn-secondary btn-sm">Edit</a>
+                            <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-secondary btn-sm">Edit</a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                 data-target="#delete-post-{{ $post->id }}">
@@ -57,8 +57,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <form action="{{ route('admin.posts.destroy', $post->slug) }}"
-                                                method="post">
+                                            <form action="{{ route('admin.posts.destroy', $post->slug) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Confirm</button>

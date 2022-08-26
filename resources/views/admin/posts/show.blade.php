@@ -2,8 +2,11 @@
 
 @section('content')
     <div class="container">
-        <img class="mb-3 shadow-lg" style="max-height:400px" src="{{ $post->cover_img }}" alt="">
-        <h2>{{ $post->title }}</h2>
+        <div style="max-height: 50vh">
+            <img class="img_jumbo" style="width: 100%; max-height: 50vh; object-fit:cover" class="mb-3 shadow-lg"
+                src="{{ asset('/storage/' . $post->cover_img) }}" alt="">
+        </div>
+        <h2 class="pt-3">{{ $post->title }}</h2>
         <div class="content">
             {{ $post->content }}
         </div>
